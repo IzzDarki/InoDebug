@@ -1,0 +1,26 @@
+{
+	"name": "InoDebug",
+	"version": "1.0.0",
+	"description": "Debug library for Arduino: provides some functionalities for debugging",
+	"keywords": [
+		"ino",
+		"debug",
+		"logging",
+		"log"
+	],
+	"authors": {
+		"name": "Bennet",
+		"email": "bennet0108@gmail.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/IzzDarki/InoDebug.git",
+	},
+	"license": "MIT",
+	"frameworks": "arduino",
+	"platforms": "atmelavr",
+	"dependencies": {
+		"name": "InoStreams",
+		"authors": "Bennet"
+	}
+}
