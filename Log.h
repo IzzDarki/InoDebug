@@ -53,6 +53,8 @@
 #define INO_ERROR(...) INO_IF_ERROR(::ino::Log::Print("Error: ", __VA_ARGS__))
 #define INO_FATAL(...) INO_IF_FATAL(::ino::Log::Print("Fatal: ", __VA_ARGS__))
 
+#define INO_ASSERT(Assertion, ...) INO_IF_ERROR(if (!(Assertion)) ::ino::Log::Print("Assertion error: ", __VA_ARGS__))
+
 #define INO_PRINTVAR(Variable) INO_IF_DEBUG(::ino::Log::PrintVar(Variable, #Variable))
 
 #define INO_ROUTINE_PRINTVAR(Variable) INO_IF_DEBUG(::ino::Log::RoutinePrintVar::PrintVar<decltype(Variable)> Variable##PrintRoutine_generated_by_call_to_macro_INO_ROUTINE_PRINTVAR(Variable, #Variable));
