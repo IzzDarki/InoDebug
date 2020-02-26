@@ -84,9 +84,7 @@ namespace ino {
 		template <typename T>
 		void PrintVar(const T& Variable, const char* Name)
 		{
-			out << "-------------------------------" << endl
-				<< "Variable " << Name << ": " << Variable << endl
-				<< "-------------------------------" << endl;
+			out << "Variable " << Name << ": " << Variable;
 		}
 
 		template <typename T>
