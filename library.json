@@ -5,8 +5,9 @@
 	"keywords": [
 		"ino",
 		"debug",
-		"logging",
-		"log"
+		"debugging",
+		"log",
+		"logging"
 	],
 	"authors": {
 		"name": "Bennet",
