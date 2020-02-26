@@ -14,7 +14,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/IzzDarki/InoDebug.git",
+		"url": "https://github.com/IzzDarki/InoDebug.git"
 	},
 	"license": "MIT",
 	"frameworks": "arduino",
