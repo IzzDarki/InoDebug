@@ -3,6 +3,16 @@
 #                            Debug                            #
 ---------------------------------------------------------------
 
+This library is intended to simplify debugging and logging for Arduinos.
+
+---------------------------------------------------------------
+
+This library is dependent on the InoStreams library: https://github.com/IzzDarki/InoStreams.git,
+which itself is dependent on the Ino (core) library: https://github.com/IzzDarki/Ino.git
+and the SoftwareSerial library from Arduino (which is installed with the Arduino IDE and other Arduino development environment)
+
+---------------------------------------------------------------
+
 Preprocessor definitions (users can modify)
 
 INO_LOG_STATE_ALL       - default: defined in debug, always undefined in release    - when defined everything is going to be logged
