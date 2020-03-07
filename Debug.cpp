@@ -60,8 +60,6 @@ namespace ino {
 		Serial.begin(9600);
 		if (ID == -1)
 		{
-			for (auto& UserRoutine : UserRoutines)
-
 			ID = IDCount++;
 			UserRoutines.PushBack(this);
 		}
