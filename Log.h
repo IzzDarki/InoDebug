@@ -8,6 +8,7 @@
 #include "StringStream.h"
 #include "Debug.h"
 #include "DynamicArray.h"
+#include "MillisTimer.h"
 
 #include <Arduino.h>
 
@@ -52,6 +53,20 @@
 #define INO_WARNING(...) INO_IF_WARNING(::ino::Log::Print("Warning: ", __VA_ARGS__))
 #define INO_ERROR(...) INO_IF_ERROR(::ino::Log::Print("Error: ", __VA_ARGS__))
 #define INO_FATAL(...) INO_IF_FATAL(::ino::Log::Print("Fatal: ", __VA_ARGS__))
+
+#define INO_NOTE_ONCE(...) INO_IF_NOTE({ static bool FirstRunVariable = true; if (FirstRunVariable) { FirstRunVariable = false; INO_NOTE(__VA_ARGS__); } })
+#define INO_WARNING_ONCE(...) INO_IF_WARNING({ static bool FirstRunVariable = true; if (FirstRunVariable) { FirstRunVariable = false; INO_WARNING(__VA_ARGS__); } })
+#define INO_ERROR_ONCE(...) INO_IF_ERROR({ static bool FirstRunVariable = true; if (FirstRunVariable) { FirstRunVariable = false; INO_ERROR(__VA_ARGS__); } })
+#define INO_FATAL_ONCE(...) INO_IF_FATAL({ static bool FirstRunVariable = true; if (FirstRunVariable) { FirstRunVariable = false; INO_FATAL(__VA_ARGS__); } })
+
+#ifndef INO_LOG_CYCLE_DURATION
+#define INO_LOG_CYCLE_DURATION 1000
+#endif
+
+#define INO_NOTE_CYCLE(...) INO_IF_NOTE({ static ::ino::MillisTimer Timer(INO_LOG_CYCLE_DURATION); if (Timer.Cycle()) { INO_NOTE(__VA_ARGS__); } })
+#define INO_WARNING_CYCLE(...) INO_IF_WARNING({ static ::ino::MillisTimer Timer(INO_LOG_CYCLE_DURATION); if (Timer.Cycle()) { INO_WARNING(__VA_ARGS__); } })
+#define INO_ERROR_CYCLE(...) INO_IF_ERROR({ static ::ino::MillisTimer Timer(INO_LOG_CYCLE_DURATION); if (Timer.Cycle()) { INO_ERROR(__VA_ARGS__); } })
+#define INO_FATAL_CYCLE(...) INO_IF_FATAL({ static ::ino::MillisTimer Timer(INO_LOG_CYCLE_DURATION); if (Timer.Cycle()) { INO_FATAL(__VA_ARGS__); } })
 
 #define INO_ASSERT(Assertion, ...) INO_IF_ERROR(if (!(Assertion)) ::ino::Log::Print("Assertion error: ", __VA_ARGS__))
 

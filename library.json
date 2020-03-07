@@ -20,8 +20,14 @@
 	"license": "MIT",
 	"frameworks": "arduino",
 	"platforms": "atmelavr",
-	"dependencies": {
-		"name": "InoStreams",
-		"authors": "Bennet"
-	}
+	"dependencies": [
+		{
+			"name": "InoStreams",
+			"authors": "Bennet"
+		},
+		{
+			"name": "InoTiming",
+			"authors": "Bennet"
+		}
+	]
 }
