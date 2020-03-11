@@ -70,7 +70,7 @@
 
 #define INO_ASSERT(Assertion, ...) INO_IF_ERROR(if (!(Assertion)) ::ino::Log::Print("Assertion error: ", __VA_ARGS__))
 
-#define INO_PRINTVAR(Variable) INO_IF_DEBUG(::ino::Log::PrintVar(Variable, #Variable))
+#define INO_PRINTVAR(...) INO_IF_DEBUG(::ino::Log::PrintVar(__VA_ARGS__, #__VA_ARGS__))
 
 #define INO_ROUTINE_PRINTVAR(Variable) INO_IF_DEBUG(::ino::Log::RoutinePrintVar::PrintVar<decltype(Variable)> Variable##PrintRoutine_generated_by_call_to_macro_INO_ROUTINE_PRINTVAR(Variable, #Variable));
 
@@ -99,7 +99,7 @@ namespace ino {
 		template <typename T>
 		void PrintVar(const T& Variable, const char* Name)
 		{
-			out << "Variable " << Name << ": " << Variable;
+			out << "Variable " << Name << ": " << Variable << ino::endl;
 		}
 
 		template <typename T>
