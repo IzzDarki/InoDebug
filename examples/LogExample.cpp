@@ -2,42 +2,34 @@
 
 #include <Log.h>
 
-int Frequency = 2000;
-int LastMillis = millis();
+int Value = 5;
 
-// with \aFrequency the variable Frequency can be adjusted with minimum 120 and maximum 2500
-INO_ROUTINE_RANGEADJUST(Frequency, 120, 2500);
+// By entering \aValue to the console the variable Value can be adjusted in the range between 120 and 2500
+INO_ROUTINE_RANGEADJUST(Value, 2, 30);
 
-// with \pFrequency and \pLastMillis the value of these two variables can be printed
-INO_ROUTINE_PRINTVAR(Frequency);
-INO_ROUTINE_PRINTVAR(LastMillis);
+// other types of adjustments:
+//INO_ROUTINE_ADJUST(Value); // Accepts every number
+//INO_ROUTINE_SPECIFICADJUST(Value, [](const int& ValueRef) { return ValueRef % 2 == 0; }); // Accepts just even numbers
+
+// By entering \pValue to the console the value of the variable Value can be printed
+INO_ROUTINE_PRINTVAR(Value);
 
 void setup() {
-	// setting up the streams is very important
+	// Preparing the streams is required
 	ino::out.begin(9600);
 	ino::in.begin(9600);
+
+	INO_NOTE("Note", ino::endl);
+	INO_WARNING("Warning", ino::endl);
+	INO_ERROR("Error", ino::endl);
+	INO_FATAL("Fatal", ino::endl);
 
 }
 
 void loop() {
-	// this is where all the debug help runs
+	// This is where all the debug code runs
 	INO_DEBUG_ROUTINE();
 
-	if (millis() > LastMillis + Frequency)
-	{
-		LastMillis = millis();
-		ino::out << "Hello World!" << ino::endl;
-
-		INO_IF_DEBUG(static int Count = 0;)
-		INO_NOTE("Count: ", ++Count, ino::endl);
-		INO_IF_DEBUG(
-			if (LastMillis > 20000)
-				INO_WARNING("when LastMillis overflow this will stop working", ino::endl);
-			if (LastMillis > 25000)
-				INO_ERROR("LastMillis are getting close to overflow", ino::endl);
-			if (LastMillis > 29000)
-				INO_FATAL("LastMillis will overflow very soon", ino::endl);
-		)
-	}
-
+	INO_NOTE_CYCLE("Note cylce", ino::endl); // This will print a note every 1000ms (see INO_LOG_CYCLE_DURATION) (see INO_NOTE_CYCLE_PERIOD() for custom period), prevents spamming the console
+	INO_NOTE_ONCE("Note only once", ino::endl); // This will print a note only once
 }
