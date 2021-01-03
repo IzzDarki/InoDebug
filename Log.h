@@ -68,6 +68,11 @@
 #define INO_ERROR_CYCLE(...) INO_IF_ERROR({ static ::ino::MillisTimer Timer(INO_LOG_CYCLE_DURATION); if (Timer.Cycle()) { INO_ERROR(__VA_ARGS__); } })
 #define INO_FATAL_CYCLE(...) INO_IF_FATAL({ static ::ino::MillisTimer Timer(INO_LOG_CYCLE_DURATION); if (Timer.Cycle()) { INO_FATAL(__VA_ARGS__); } })
 
+#define INO_NOTE_CYCLE_PERIOD(Period, ...) INO_IF_NOTE({ static ::ino::MillisTimer Timer(Period); if (Timer.Cycle()) { INO_NOTE(__VA_ARGS__); } })
+#define INO_WARNING_CYCLE_PERIOD(Period, ...) INO_IF_WARNING({ static ::ino::MillisTimer Timer(Period); if (Timer.Cycle()) { INO_WARNING(__VA_ARGS__); } })
+#define INO_ERROR_CYCLE_PERIOD(Period, ...) INO_IF_ERROR({ static ::ino::MillisTimer Timer(Period); if (Timer.Cycle()) { INO_ERROR(__VA_ARGS__); } })
+#define INO_FATAL_CYCLE_PERIOD(Period, ...) INO_IF_FATAL({ static ::ino::MillisTimer Timer(Period); if (Timer.Cycle()) { INO_FATAL(__VA_ARGS__); } })
+
 #define INO_ASSERT(Assertion, ...) INO_IF_ERROR(if (!(Assertion)) ::ino::Log::Print("Assertion error: ", __VA_ARGS__))
 
 #define INO_PRINTVAR(...) INO_IF_DEBUG(::ino::Log::PrintVar(__VA_ARGS__, #__VA_ARGS__))
